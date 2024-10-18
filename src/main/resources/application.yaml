@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  tomcat:
+    connection-timeout: 5000
+    max-connections: 10000
+    accept-count: 1000
+    threads:
+      max: 200
+      min-spare: 200
+    keep-alive-timeout: -1
+    max-keep-alive-requests: 4000
+    uri-encoding: UTF-8
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/xml,text/plain
+    min-response-size: 1024
+
+spring:
+  jpa:
+    show-sql: true
+    database: POSTGRESQL
+    # properties:
+    #   hibernate.jdbc.batch_size: 50
+    #   hibernate.jdbc.batch_versioned_data: true
+    #   hibernate.jdbc.lob.non_contextual_creation: true
+    #   hibernate.jadira.timezone: UTC
+    #   hibernate.jadira.timezone.default: UTC
+    # hibernate:
+    #   ddl-auto: create-drop
+    #   dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/test
+    username: imaohw
+    password: root123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      poolName: hikari-ds
+      transactionIsolation: TRANSACTION_REPEATABLE_READ
+      maximumPoolSize: 200
+      minimumIdle: 200
+      keepaliveTime: 60000
+      connectionTestQuery: SELECT 1
+      connectionTimeout: 5000
+      validationTimeout: 1000
+      autoCommit: true
+      idleTimeout: 600000
+      maxLifetime: 86400000
+      data-source-properties:
+        cache-prep-stmts: true
+        use-server-prep-stmts: true
+        prep-stmt-cache-size: 250
+        rep-stmt-cache-sql-limit: 2048
+
+logging:
+  level:
+    '[root]': INFO
+    '[com.example]': INFO
+    '[org.apache.tomcat]': ERROR
+    '[org.apache.catalina]': ERROR
+    '[com.example.apm]': INFO
+    '[io.opentelemetry.javaagent]': INFO
+    '[io.opentelemetry.api]': INFO
+    '[io.opentelemetry.exporter]': INFO
