@@ -9,16 +9,15 @@ import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.metrics.LongHistogram;
 import io.opentelemetry.api.metrics.Meter;
 import io.opentelemetry.api.trace.Tracer;
-import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-public class ApmDemoApplication {
+public class Application {
 
 	public static void main(String[] args) {
 		// String defaultNameserverString = SystemPropertyUtil.get("io.netty.resolver.dns.defaultNameServerFallback", null);
-		SpringApplication.run(ApmDemoApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@Bean
@@ -29,7 +28,7 @@ public class ApmDemoApplication {
 
 	@Bean
 	public Tracer initTracer(OpenTelemetry openTelemetry){
-		return openTelemetry.getTracer(ApmDemoApplication.class.getName());
+		return openTelemetry.getTracer(Application.class.getName());
 	}
 
 	@Bean

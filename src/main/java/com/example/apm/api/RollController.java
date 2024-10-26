@@ -12,20 +12,15 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alicp.jetcache.Cache;
 import com.alicp.jetcache.CacheManager;
-import com.alicp.jetcache.CacheUtil;
-import com.alicp.jetcache.support.JetCacheExecutor;
 import com.example.apm.matedata.Test;
 import com.example.apm.service.ApmService;
 
-import jodd.util.RandomString;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -38,7 +33,6 @@ public class RollController {
 
     @Resource
     private CacheManager cacheManager;
-    private Cache<String, Test> orderSumCache;
 
     /**
      * 处理"/rolldice"GET请求的控制器方法.
