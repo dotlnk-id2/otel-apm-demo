@@ -1,6 +1,7 @@
 package com.example.apm.service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,6 @@ public interface ApmService {
         @Resource
         TestRepository testRepository;
 
-        @Override
         @WithSpan
         public String runA() {
             Optional<Test> obj = testRepository.findById(1L);
@@ -39,7 +39,6 @@ public interface ApmService {
             return "haha runA";
         }
 
-        @Override
         @WithSpan
         public String runB(String s) {
             Optional<List<Test>> list = this.testRepository.findByName(s);
@@ -47,9 +46,15 @@ public interface ApmService {
             return s;
         }
 
-        @Override
         @WithSpan
         public String runC(Integer x) {
+            Test x1 = new Test();
+            x1.name = "runC_name";
+            x1.createTime = new Date();
+            
+            this.testRepository.save(x1);
+            log.info("test.id={}",x1);
+
             return x.toString() + "C";
         }
 

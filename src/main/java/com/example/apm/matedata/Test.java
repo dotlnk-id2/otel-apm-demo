@@ -13,8 +13,8 @@ import lombok.Data;
 @Entity
 public class Test {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String name;
-    Date createTime;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+    public String name;
+    public Date createTime;
 }

@@ -45,6 +45,7 @@ spring:
       autoCommit: true
       idleTimeout: 600000
       maxLifetime: 86400000
+      register-mbeans: true
       data-source-properties:
         cache-prep-stmts: true
         use-server-prep-stmts: true
@@ -54,10 +55,10 @@ spring:
 logging:
   level:
     '[root]': INFO
-    '[com.example]': INFO
-    '[org.apache.tomcat]': ERROR
-    '[org.apache.catalina]': ERROR
+    '[org.apache.tomcat]': INFO
+    '[org.apache.catalina]': INFO
     '[com.example.apm]': INFO
+    '[com.example]': INFO
     '[io.opentelemetry.javaagent]': INFO
-    '[io.opentelemetry.api]': INFO
-    '[io.opentelemetry.exporter]': INFO
+    '[io.opentelemetry.api]': ERROR
+    '[io.opentelemetry.exporter]': ERROR
