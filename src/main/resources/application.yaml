@@ -17,34 +17,24 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/test
-    username: imaohw
-    password: root123
-    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.sqlite.JDBC
+    url: "jdbc:sqlite:./db/test.db"
     hikari:
-      poolName: hikari-ds
-      transactionIsolation: TRANSACTION_REPEATABLE_READ
-      maximumPoolSize: 200
-      minimumIdle: 200
-      keepaliveTime: 600000
-      connectionTestQuery: SELECT 1
-      connectionTimeout: 5000
-      validationTimeout: 3000
-      autoCommit: true
-      idleTimeout: 600000
-      maxLifetime: 86400000
-      register-mbeans: true
-      data-source-properties:
-        cache-prep-stmts: true
-        use-server-prep-stmts: true
-        prep-stmt-cache-size: 250
-        rep-stmt-cache-sql-limit: 2048
+      maximum-pool-size: 1
+      minimum-idle: 0
+      connection-timeout: 10000
+      idle-timeout: 10000
+      max-lifetime: 30000
+      leak-detection-threshold: 5000
+      auto-commit: false
 
 easy-query:
-  #支持的数据库
-  database: mysql
-  #对象属性和数据库列名的转换器
+  database: sqlite
   name-conversion: underlined
+  # 建议开启，便于调试时查看生成的SQL和映射警告
+  print-sql: true 
+  warning-column-miss: true 
 
 logging:
   level:
