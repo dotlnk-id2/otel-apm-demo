@@ -19,11 +19,11 @@ import lombok.Data;
 @EasyAssertMessage("未找到对应的用户信息")
 public class User implements ProxyEntityAvailable<User, UserProxy> {
     @Column(primaryKey = true, comment = "用户id")
-    private Long id;
+    public Long id;
     @Column(comment = "用户姓名")
-    private String name;
+    public String name;
     @Column(comment = "用户手机")
-    private String phone;
+    public String phone;
     @Column(value = "create_at" ,comment = "创建时间")
-    private LocalDateTime createAt;
+    public LocalDateTime createAt;
 }

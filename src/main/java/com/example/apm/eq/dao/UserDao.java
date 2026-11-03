@@ -2,7 +2,7 @@ package com.example.apm.eq.dao;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +11,9 @@ import com.example.apm.eq.table.User;
 
 import io.reactivex.rxjava3.core.Observable;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository 
 public class UserDao {
     
@@ -20,6 +23,8 @@ public class UserDao {
     public Observable<List<User>> query(String name){
         return Observable.fromCallable(() -> {
             return easyEntityQuery.queryable(User.class).where(u -> u.name().eq(name)).toList();
+        }).doOnError(e -> {
+            log.error(e.getMessage(), e);
         });
     }
 }
